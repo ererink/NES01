@@ -10,12 +10,35 @@ NES 팀은 젊은 예술가들의 어려움에 공감하며 그들의 꿈을 이
 <br>
 <br>
 
+* 개발기간: 2022.11.28 ~ 2022.12.15
+
 ## 팀원 소개
 ![NES Members](./NES.assets/%ED%8C%80%EC%9B%90%EC%86%8C%EA%B0%9C.png)
 
-백엔드 - articles, orders 담당
+
+#### articles, orders 담당
+* articles
+    * 작품 CRUD
+    * 페이지네이션
+    * 댓글
+    * 좋아요 비동기
+    * 검색
+<br>
+
+* orders
+    * 가격 제시 화면 구현
+    * 장바구니 추가 및 삭제
+    * 주문 및 결제 (이니시스 API)
+
+
 <br>
 <br>
+
+# Modeling
+## ERD 모델
+![ERD 모델](./NES.assets/ERD.png)
+## 와이어 프레임
+![와이어 프레임](./NES.assets/%ED%99%94%EB%A9%B4%EC%84%A4%EA%B3%841.png)
 
 ## 기능 소개
 <br>
@@ -26,3 +49,5 @@ NES 팀은 젊은 예술가들의 어려움에 공감하며 그들의 꿈을 이
 
 ![티켓 출력](./NES.assets/%ED%8B%B0%EC%BC%93%20%EC%B6%9C%EB%A0%A5.gif)
 
+## Review
+![후기](./NES.assets/%ED%9B%84%EA%B8%B0.png)
