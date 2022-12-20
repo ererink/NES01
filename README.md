@@ -193,15 +193,39 @@ NES 팀은 젊은 예술가들의 어려움에 공감하며 그들의 꿈을 이
   * 사용자 이름, 이메일, 문의 제목, 문의 내용, 이미지 
 * 사용자가 작성한 문의들 출력
 
+<br>
+<br>
 
 
 ## 이슈 사항
 
-⁉️ 주문 모델
+⁉️ 주문 및 결제 사항이 저장되지 않았던 이슈
 
-▶️ 그림과 주문에 대한 관계가 제대로 이루어지지 않아 추후에 다시 재설계 해야 했었던 이슈
+▶️ 작품(art)과 주문(order) 모델의 관계 설정을 `그림 1 : 주문 N` 로 설계했던 초기 모델에서 `주문 1 : 그림 N` 로 모델을 재설계 하였다.
 
 
+
+⁉️Art 모델에서 Order 모델을 ForeignKey 참조 시 a circular import 오류 발생
+
+▶️  이는 `circular dependency`  로 인한 에러로 무한 루프로 모델들이 연관되어 오류가 발생하였다.
+
+`models.ForeignKey('orders.Order'...` 로 수정해주어 해당 model이 필요할 때  import 하도록 Order의 경로를 수정하여 오류를 띄우지 않도록 한다. 
+
+
+
+⁉️결제 시(payment.html) 작성한 사용자 정보가 결제 완료 페이지(complete.html)로 넘겨 저장하는 로직 오류 발생
+
+▶️ `OrderCreateForm`  으로 사용자가 작성한 사용자 정보를 form 태그의 submit 속성과 Javascript로 이동할 페이지에 정보를 넘겨주도록 한다.
+
+▶️ 결제 완료 페이지(complete.html)에서 `OrderCreateForm`으로 받은 사용자 결제 정보를 POST로 받아 `commit = False` 하여 `order` 변수에 저장한다.
+
+▶️ 주문을 먼저 생성한 후 생성한 주문(order)을 가지고(외래키로 참조)하여 주문 정보를 Order 테이블에 저장하도록 한다.
+
+▶️ 주문한 작품의 정보는 장바구니(cart_items)에 있는 작품을 사용하여 해당 작품에 주문 pk를 저장한다.
+
+
+<br>
+<br>
 
 # Review
 
